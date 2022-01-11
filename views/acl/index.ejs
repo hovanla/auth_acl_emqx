@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html class="dark-themes" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acl</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/iconfont.css">
+    <script src="js/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="public/css/test.css"> -->
+</head>
+
+<body style="background-color: #161616;">
+    <div id="app">
+        <div class="home-view">
+            <div class="left-bar">
+                <div class="logo-box"><img src="img/emq_logo.b68cfef.png" class="logo"></div>
+                <ul role="menubar" class="menu-wrapper el-menu" style="background-color: rgb(36, 35, 39);">
+                    <a href="/auth"><li role="menuitem" tabindex="-1" class="el-menu-item"
+                        style="padding-left: 20px; color: rgb(166, 166, 168); background-color: rgb(36, 35, 39);"><i
+                            class="iconfont icon-tianshenpi"></i>
+                        <div class="el-badge menu-dot">Authentication </div>
+                    </li></a>
+                    <a href="/acl">
+                    <li role="menuitem" tabindex="-1" class="el-menu-item is-active"
+                        style="padding-left: 20px; color: rgb(166, 166, 168); background-color: rgb(36, 35, 39);"><i
+                            class="iconfont icon-xitong"></i>
+                        <div class="el-badge menu-dot">
+                              ACL
+                        </div>
+                    </li></a> 
+                    <div class="bar-footer">
+                        <span></span>
+                        <a  onclick="logout()" javascript:void(0);"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAABsklEQVRoQ+2ZwVHDMBBF/6oB6IBwCRxNJeCkAdGBXQl0gCggASrB3DC5OBVgrjlkGTOByciJbEcyyIxytbTat/9LlrOEgf9o4PkjAPy1gjsVOH+Qo/UaN0SIAIwcJ1kwIxMC6WusCtvYNYCv5BnPBBzbBjfNZ6AUhAtbiBrAeC4fCbjsM/nv2Aw8vU3Ulc1auwDe+67+VsJFPlGnTgHO5pK3A+YT5fSkch2/lpzrBfTquo4fALr6NyigVSxYKFjI8pj+dQt1VaxpfABoqlDX5+OZvFsJpEWsyjZzvVOgek8wkDHhehGrrAnCS4Aq6eq6zYx0MVXKBOEtwM+Vm6FMlrIG0K8GTZIf8txkqUEAmCw1HADGBwOJvicGAcDACxPkrlPJGuAQT5vm6HuKgfsVIdn3XvAWgPdYRof3EsBkGe8BxnOpTJbxHqDrnvLOQt4DhI/68FHf1aTa+GChYKFgIbd/39cbHDNZEuHIstDtpjOW+VRZ9eD+X4tp06HM+lahui4Lgch5k6/SftOpvCVGBMJJOz+0HMVYMiEThMQ2+WpFp/2vlghOhwUAp+U8INjgFfgEg1piQESWU5UAAAAASUVORK5CYII="></a>
+                    </div>
+                </ul>
+            </div>
+            <div class="home-content">
+                <div class="acl-view">
+                    <div class="page-title">
+                        ACL
+                    </div>
+                    <div class="normal-tabs el-tabs el-tabs--card el-tabs--top">
+                        <div class="el-tabs__header is-top">
+                            <div class="el-tabs__nav-wrap is-top">
+                                <div class="el-tabs__nav-scroll">
+                                    <div role="tablist" class="el-tabs__nav is-top" style="transform: translateX(0px);">
+                                        <div id="tab-client" aria-controls="pane-basic" role="tab" aria-selected="true" tabindex="0" class="el-tabs__item is-top is-active">Client ID</div>
+                                        <div id="tab-username" aria-controls="pane-subscription" role="tab" tabindex="-1" class="el-tabs__item is-top">Username</div>
+                                        <div id="tab-alluser" aria-controls="pane-alluser" role="tab" tabindex="-1" class="el-tabs__item is-top">All Users</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="el-tabs__content">
+                            <div role="tabpanel" id="pane-client" aria-labelledby="tab-basic" class="el-tab-pane">
+                                <div class="clients-id">
+                                    <div class="el-card el-card--self tabs-card is-always-shadow">
+                                        <div class="el-card__body">
+                                            <form class="el-form el-form--label-left">
+                                                <div class="el-row" style="margin-left: -10px; margin-right: -10px;">
+                                                    <div class="el-col el-col-4" style="padding-left: 10px; padding-right: 10px;">
+                                                        <div class="el-form-item el-form-item--medium">
+                                                            <div class="el-form-item__content">
+                                                                <div class="el-input el-input--small">
+                                                                    <input type="text" placeholder="Client ID" required autocomplete="off" class="el-input__inner clientid">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="el-col el-col-4" style="padding-left: 10px; padding-right: 10px;">
+                                                        <div class="el-form-item el-form-item--medium">
+                                                            <div class="el-form-item__content">
+                                                                <div class="el-input el-input--small">
+                                                                    <input type="text" placeholder="Topic" autocomplete="off" class="el-input__inner topic_client">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="el-col el-col-4" style="padding-left: 10px; padding-right: 10px;">
+                                                        <div class="pub_sub">
+                                                            <select id="pub_sub_client">
+                                                                <option value="1">Publish</option>
+                                                                <option value="2">Subscribe</option>
+                                                                <option value="3">Publish & Subscribe</option>
+                                                             </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="el-col el-col-4" style="padding-left: 10px; padding-right: 10px;">
+                                                        <div class="alow_deny">
+                                                            <select id="ad_client">
+                                                                <option value="1">Allow</option>
+                                                                <option value="0">Deny</option>
+                                                             </select>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <span class="col-oper" style="float: left;"><button type="button"
+                                                            class="el-button el-button--primary el-button--small add_client is-plain el-button--success is-plain">
+                                                            <span>
+                                                                Add
+                                                            </span>
+                                                    </span>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div
+                                    class="el-table el-table--fit el-table--border el-table--enable-row-hover el-table--enable-row-transition el-table--medium">
+                                    <div class="hidden-columns">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                    </div>
+                                    <div class="el-table__header-wrapper">
+                                        <table class="el-table__header" style="width: 1100px;" cellspacing="0" cellpadding="0"
+                                            border="0">
+                                            <colgroup>
+                                                <col name="el-table_50_column_221" width="270">
+                                                <col name="el-table_50_column_222" width="270">
+                                                <col name="el-table_50_column_223" width="210">
+                                                <col name="el-table_50_column_224" width="210">
+                                                <col name="el-table_50_column_225" width="140">
+                                                <col name="gutter" width="0">
+                                            </colgroup>
+                                            <thead class="has-gutter">
+                                                <tr class="">
+                                                    <th colspan="1" rowspan="1" class="el-table_50_column_221     is-leaf">
+                                                        <div class="cell">Client ID</div>
+                                                    </th>
+                                                    <th colspan="1" rowspan="1" class="el-table_50_column_221     is-leaf">
+                                                        <div class="cell">Topic</div>
+                                                    </th>
+                                                    <th colspan="1" rowspan="1" class="el-table_50_column_221     is-leaf">
+                                                        <div class="cell">Action</div>
+                                                    </th>
+                                                    <th colspan="1" rowspan="1" class="el-table_50_column_221     is-leaf">
+                                                        <div class="cell">Allowed</div>
+                                                    </th>
+                                                    <th colspan="1" rowspan="1" class="el-table_50_column_223     is-leaf">
+                                                        <div class="cell">Actions</div>
+                                                    </th>
+                                                    <th class="gutter" style="width: 0px; display: none;"></th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                    <div class="el-table__body-wrapper is-scrolling-none">
+                                        <table class="el-table__body tab_clientid" style="width: 1100px;" cellspacing="0" cellpadding="0"
+                                            border="0">
+                                            <colgroup>
+                                                <col name="el-table_50_column_221" width="270">
+                                                <col name="el-table_50_column_222" width="270">
+                                                <col name="el-table_50_column_223" width="210">
+                                                <col name="el-table_50_column_224" width="210">
+                                                <col name="el-table_50_column_225" width="140">
+                                            </colgroup>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="el-dialog__wrapper" style="z-index: 2001;display: none;">
+                                        <div role="dialog" aria-modal="true" aria-label="Edit User" class="el-dialog"
+                                            style="margin-top: 15vh; width: 500px;">
+                                            <div class="el-dialog__header"><span class="el-dialog__title">Edit User</span>
+                                                <button
+                                                    type="button" aria-label="Close" class="el-dialog__headerbtn closedit"><i class="fa fa-times" aria-hidden="true"></i></i></button>
+                                                    </div>
+                                            <div class="el-dialog__body">
+                                                <form class="el-form el-form--public el-form--label-top">
+                                                    <div class="el-row" style="margin-left: -10px; margin-right: -10px;">
+                                                        <div class="el-col el-col-24"
+                                                            style="padding-left: 10px; padding-right: 10px;">
+                                                            <div class="el-form-item is-required el-form-item--medium"><label
+                                                                    for="username" class="el-form-item__label">Username</label>
+                                                                <div class="el-form-item__content">
+                                                                    <div class="el-input el-input--medium is-disabled">
+                                                                        <input type="text" id="usedit" autocomplete="off"
+                                                                            class="el-input__inner">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="el-col el-col-24"
+                                                            style="padding-left: 10px; padding-right: 10px;">
+                                                            <div class="el-form-item is-required el-form-item--medium"><label
+                                                                    for="tags" class="el-form-item__label">Password</label>
+                                                                <div class="el-form-item__content">
+                                                                    <div class="el-input el-input--medium">
+                                                                        <input type="text" autocomplete="off"
+                                                                            class="el-input__inner">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="el-dialog__footer">
+                                                <div><button type="button" id="cancelus"
+                                                        class="el-button cache-btn el-button--text el-button--medium">
+                                                        <span>
+                                                            Cancel
+                                                        </span>
+                                                    </button> <button type="button"
+                                                        class="el-button confirm-btn el-button--success el-button--medium">
+                                                        <span>
+                                                            Save
+                                                        </span>
+                                                    </button></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" id="pane-username" aria-labelledby="tab-subscription" class="el-tab-pane" style="display: none;">
+                                <div class="clients-username">
+                                    <div class="el-card el-card--self tabs-card is-always-shadow">
+                                        <div class="el-card__body">
+                                            <form class="el-form el-form--label-left">
+                                                <div class="el-row" style="margin-left: -10px; margin-right: -10px;">
+                                                    <div class="el-col el-col-4" style="padding-left: 10px; padding-right: 10px;">
+                                                        <div class="el-form-item el-form-item--medium">
+                                                            <div class="el-form-item__content">
+                                                                <div class="el-input el-input--small">
+                                                                    <input type="text" placeholder="Username" required autocomplete="off" class="el-input__inner username">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="el-col el-col-4" style="padding-left: 10px; padding-right: 10px;">
+                                                        <div class="el-form-item el-form-item--medium">
+                                                            <div class="el-form-item__content">
+                                                                <div class="el-input el-input--small">
+                                                                    <input type="text" placeholder="Topic" autocomplete="off" class="el-input__inner topic_us">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="el-col el-col-4" style="padding-left: 10px; padding-right: 10px;">
+                                                        <div class="pub_sub">
+                                                            <select id="pub_sub_us">
+                                                                <option value="1">Publish</option>
+                                                                <option value="2">Subscribe</option>
+                                                                <option value="3">Publish & Subscribe</option>
+                                                                </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="el-col el-col-4" style="padding-left: 10px; padding-right: 10px;">
+                                                        <div class="alow_deny">
+                                                            <select id="ad_us">
+                                                                <option value="1">Allow</option>
+                                                                <option value="0">Deny</option>
+                                                                </select>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <span class="col-oper" style="float: left;"><button type="button"
+                                                            class="el-button el-button--primary add_us el-button--small is-plain el-button--success is-plain">
+                                                            <span>
+                                                                Add
+                                                            </span>
+                                                    </span>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div
+                                    class="el-table el-table--fit el-table--border el-table--enable-row-hover el-table--enable-row-transition el-table--medium">
+                                    <div class="hidden-columns">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                    </div>
+                                    <div class="el-table__header-wrapper">
+                                        <table class="el-table__header" style="width: 1100px;" cellspacing="0" cellpadding="0"
+                                            border="0">
+                                            <colgroup>
+                                                <col name="el-table_50_column_221" width="270">
+                                                <col name="el-table_50_column_222" width="270">
+                                                <col name="el-table_50_column_223" width="210">
+                                                <col name="el-table_50_column_224" width="210">
+                                                <col name="el-table_50_column_225" width="140">
+                                                <col name="gutter" width="0">
+                                            </colgroup>
+                                            <thead class="has-gutter">
+                                                <tr class="">
+                                                    <th colspan="1" rowspan="1" class="el-table_50_column_221     is-leaf">
+                                                        <div class="cell">Username</div>
+                                                    </th>
+                                                    <th colspan="1" rowspan="1" class="el-table_50_column_221     is-leaf">
+                                                        <div class="cell">Topic</div>
+                                                    </th>
+                                                    <th colspan="1" rowspan="1" class="el-table_50_column_221     is-leaf">
+                                                        <div class="cell">Action</div>
+                                                    </th>
+                                                    <th colspan="1" rowspan="1" class="el-table_50_column_221     is-leaf">
+                                                        <div class="cell">Allowed</div>
+                                                    </th>
+                                                    <th colspan="1" rowspan="1" class="el-table_50_column_223     is-leaf">
+                                                        <div class="cell">Actions</div>
+                                                    </th>
+                                                    <th class="gutter" style="width: 0px; display: none;"></th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                    <div class="el-table__body-wrapper is-scrolling-none">
+                                        <table class="el-table__body tab_username" style="width: 1100px;" cellspacing="0" cellpadding="0"
+                                            border="0">
+                                            <colgroup>
+                                                <col name="el-table_50_column_221" width="270">
+                                                <col name="el-table_50_column_222" width="270">
+                                                <col name="el-table_50_column_223" width="210">
+                                                <col name="el-table_50_column_224" width="210">
+                                                <col name="el-table_50_column_225" width="140">
+                                            </colgroup>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="el-dialog__wrapper" style="z-index: 2001;display: none;">
+                                        <div role="dialog" aria-modal="true" aria-label="Edit User" class="el-dialog"
+                                            style="margin-top: 15vh; width: 500px;">
+                                            <div class="el-dialog__header"><span class="el-dialog__title">Edit User</span>
+                                                <button
+                                                    type="button" aria-label="Close" class="el-dialog__headerbtn closedit"><i class="fa fa-times" aria-hidden="true"></i></i></button>
+                                                    </div>
+                                            <div class="el-dialog__body">
+                                                <form class="el-form el-form--public el-form--label-top">
+                                                    <div class="el-row" style="margin-left: -10px; margin-right: -10px;">
+                                                        <div class="el-col el-col-24"
+                                                            style="padding-left: 10px; padding-right: 10px;">
+                                                            <div class="el-form-item is-required el-form-item--medium"><label
+                                                                    for="username" class="el-form-item__label">Username</label>
+                                                                <div class="el-form-item__content">
+                                                                    <div class="el-input el-input--medium is-disabled">
+                                                                        <input type="text" id="usedit" autocomplete="off"
+                                                                            class="el-input__inner">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="el-col el-col-24"
+                                                            style="padding-left: 10px; padding-right: 10px;">
+                                                            <div class="el-form-item is-required el-form-item--medium"><label
+                                                                    for="tags" class="el-form-item__label">Password</label>
+                                                                <div class="el-form-item__content">
+                                                                    <div class="el-input el-input--medium">
+                                                                        <input type="text" autocomplete="off"
+                                                                            class="el-input__inner">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="el-dialog__footer">
+                                                <div><button type="button" id="cancelus"
+                                                        class="el-button cache-btn el-button--text el-button--medium">
+                                                        <span>
+                                                            Cancel
+                                                        </span>
+                                                    </button> <button type="button"
+                                                        class="el-button confirm-btn el-button--success el-button--medium">
+                                                        <span>
+                                                            Save
+                                                        </span>
+                                                    </button></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" id="pane-alluser" aria-labelledby="tab-alluser" class="el-tab-pane" style="display: none;">
+                                <div class="clients-all">
+                                    <div class="el-card el-card--self tabs-card is-always-shadow">
+                                        <div class="el-card__body">
+                                            <form class="el-form el-form--label-left">
+                                                <div class="el-row" style="margin-left: -10px; margin-right: -10px;">
+                                                    <div class="el-col el-col-4" style="padding-left: 10px; padding-right: 10px;">
+                                                        <div class="el-form-item el-form-item--medium">
+                                                            <div class="el-form-item__content">
+                                                                <div class="el-input el-input--small">
+                                                                    <input type="text" placeholder="Topic" autocomplete="off" class="el-input__inner topic_all">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="el-col el-col-4" style="padding-left: 10px; padding-right: 10px;">
+                                                        <div class="pub_sub">
+                                                            <select id="pub_sub_all">
+                                                                <option value="1">Publish</option>
+                                                                <option value="2">Subscribe</option>
+                                                                <option value="3">Publish & Subscribe</option>
+                                                                </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="el-col el-col-4" style="padding-left: 10px; padding-right: 10px;">
+                                                        <div class="alow_deny">
+                                                            <select id="ad_all">
+                                                                <option value="1">Allow</option>
+                                                                <option value="0">Deny</option>
+                                                                </select>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <span class="col-oper" style="float: left;"><button type="button"
+                                                            class="el-button el-button--primary add_all el-button--small is-plain el-button--success is-plain">
+                                                            <span>
+                                                                Add
+                                                            </span>
+                                                    </span>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div
+                                    class="el-table el-table--fit el-table--border el-table--enable-row-hover el-table--enable-row-transition el-table--medium">
+                                    <div class="hidden-columns">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                    </div>
+                                    <div class="el-table__header-wrapper">
+                                        <table class="el-table__header" style="width: 1100px;" cellspacing="0" cellpadding="0"
+                                            border="0">
+                                            <colgroup>
+                                                <col name="el-table_50_column_222" width="540">
+                                                <col name="el-table_50_column_223" width="210">
+                                                <col name="el-table_50_column_224" width="210">
+                                                <col name="el-table_50_column_225" width="140">
+                                                <col name="gutter" width="0">
+                                            </colgroup>
+                                            <thead class="has-gutter">
+                                                <tr class="">
+                                                    <th colspan="1" rowspan="1" class="el-table_50_column_221     is-leaf">
+                                                        <div class="cell">Topic</div>
+                                                    </th>
+                                                    <th colspan="1" rowspan="1" class="el-table_50_column_221     is-leaf">
+                                                        <div class="cell">Action</div>
+                                                    </th>
+                                                    <th colspan="1" rowspan="1" class="el-table_50_column_221     is-leaf">
+                                                        <div class="cell">Allowed</div>
+                                                    </th>
+                                                    <th colspan="1" rowspan="1" class="el-table_50_column_223     is-leaf">
+                                                        <div class="cell">Actions</div>
+                                                    </th>
+                                                    <th class="gutter" style="width: 0px; display: none;"></th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                    <div class="el-table__body-wrapper is-scrolling-none">
+                                        <table class="el-table__body tab_alluser" style="width: 1100px;" cellspacing="0" cellpadding="0"
+                                            border="0">
+                                            <colgroup>
+                                                <col name="el-table_50_column_222" width="540">
+                                                <col name="el-table_50_column_223" width="210">
+                                                <col name="el-table_50_column_224" width="210">
+                                                <col name="el-table_50_column_225" width="140">
+                                            </colgroup>
+                                            <tbody>
+                                                <tr class="el-table__row">
+                                                    <td rowspan="1" colspan="1" class="el-table_50_column_222">
+                                                        <div class="cell">admin</div>
+                                                    </td>
+                                                    <td rowspan="1" colspan="1" class="el-table_50_column_223">
+                                                        <div class="cell">admin</div>
+                                                    </td>
+                                                    <td rowspan="1" colspan="1" class="el-table_50_column_224">
+                                                        <div class="cell">admin</div>
+                                                    </td>
+                                                    <td rowspan="1" colspan="1" class="el-table_50_column_225">
+                                                        <div class="cell">
+                                                            <button type="button"
+                                                                class="el-button delus el-button--danger  el-button--mini is-plain">
+                                                                <span> Delete</span>
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="el-dialog__wrapper" style="z-index: 2001;display: none;">
+                                        <div role="dialog" aria-modal="true" aria-label="Edit User" class="el-dialog"
+                                            style="margin-top: 15vh; width: 500px;">
+                                            <div class="el-dialog__header"><span class="el-dialog__title">Edit User</span>
+                                                <button
+                                                    type="button" aria-label="Close" class="el-dialog__headerbtn closedit"><i class="fa fa-times" aria-hidden="true"></i></i></button>
+                                                    </div>
+                                            <div class="el-dialog__body">
+                                                <form class="el-form el-form--public el-form--label-top">
+                                                    <div class="el-row" style="margin-left: -10px; margin-right: -10px;">
+                                                        <div class="el-col el-col-24"
+                                                            style="padding-left: 10px; padding-right: 10px;">
+                                                            <div class="el-form-item is-required el-form-item--medium"><label
+                                                                    for="username" class="el-form-item__label">Username</label>
+                                                                <div class="el-form-item__content">
+                                                                    <div class="el-input el-input--medium is-disabled">
+                                                                        <input type="text" id="usedit" autocomplete="off"
+                                                                            class="el-input__inner">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="el-col el-col-24"
+                                                            style="padding-left: 10px; padding-right: 10px;">
+                                                            <div class="el-form-item is-required el-form-item--medium"><label
+                                                                    for="tags" class="el-form-item__label">Password</label>
+                                                                <div class="el-form-item__content">
+                                                                    <div class="el-input el-input--medium">
+                                                                        <input type="text" autocomplete="off"
+                                                                            class="el-input__inner">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="el-dialog__footer">
+                                                <div><button type="button" id="cancelus"
+                                                        class="el-button cache-btn el-button--text el-button--medium">
+                                                        <span>
+                                                            Cancel
+                                                        </span>
+                                                    </button> <button type="button"
+                                                        class="el-button confirm-btn el-button--success el-button--medium">
+                                                        <span>
+                                                            Save
+                                                        </span>
+                                                    </button></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div syle tabindex="-1" role="dialog" aria-modal="true" aria-label="Notice" class="el-message-box__wrapper"
+            style="z-index: 2003; display: none;">
+            <div class="el-message-box">
+                <div class="el-message-box__header">
+                    <div class="el-message-box__title">
+                        <input type="text" value="" class="idhide" style="display: none;">
+                       <span>Notice</span>
+                    </div><button type="button" aria-label="Close" class="el-message-box__headerbtn closedel">
+                         <i class="fa fa-times" aria-hidden="true"></i></button>
+                </div>
+                <div class="el-message-box__content">
+                    <div class="el-message-box__container">
+                        <div class="el-message-box__status el-icon-warning"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></div>
+                        <div class="el-message-box__message">
+                            <p>Want to delete ？</p>
+                        </div>
+                    </div>
+                    <div class="el-message-box__input" style="display: none;">
+                        <div class="el-input el-input--medium">
+                            <input type="text" autocomplete="off" placeholder="" class="el-input__inner">
+                        </div>
+                        <div class="el-message-box__errormsg" style="visibility: hidden;"></div>
+                    </div>
+                </div>
+                <div class="el-message-box__btns"><button type="button"
+                        class="el-button canceldel el-button--default el-button--small cache-btn el-button--text">
+                        <span>
+                            Cancel
+                        </span>
+                    </button><button type="button"
+                        class="el-button el-button--default cfremove el-button--small el-button--primary confirm-btn">
+                        <span>
+                            Confirm
+                        </span>
+                    </button></div>
+            </div>
+        </div>
+        <div class="v-modal" style="z-index: 2045;" tabindex="0"></div>
+    </div>
+    <script>
+         function logout(){
+            sessionStorage.removeItem("user")
+            localStorage.removeItem("user");
+            window.location.href = "http://localhost:3000/login";
+        }
+        $(document).ready(function () {
+            let header = {};
+            let user = sessionStorage.getItem("user")?sessionStorage.getItem("user"):localStorage.getItem("user");
+            if(user){
+                user = JSON.parse(user)
+                $(".bar-footer span").html(user.username)
+                header = {"Authorization": "Basic " + btoa(user.username + ":" + user.password)}
+            }else{
+                window.location.href = "http://localhost:3000/login"
+            }
+            $.ajax({
+                method: "GET",
+                url: "/acl/client",
+                headers: header
+            }).done(function( msg ) {
+                if(msg.list.length > 0){
+                    let pub_sub_client = "";
+                    let allow = "";
+                    msg.list.forEach(element => {
+                        element.allow==1 ? allow = "Allow": allow = "Deny"
+                        element.access==2 ? pub_sub_client = "Subscribe": pub_sub_client = "Publish"
+                        $("table.tab_clientid > tbody").append(`<tr data-id="${element.id}" class="el-table__row">
+                                            <td rowspan="1" colspan="1" class="el-table_50_column_221">
+                                                <div class="cell">${element.clientid}</div>
+                                            </td>
+                                            <td rowspan="1" colspan="1" class="el-table_50_column_222">
+                                                <div class="cell">${element.topic}</div>
+                                            </td>
+                                            <td rowspan="1" colspan="1" class="el-table_50_column_223">
+                                                <div class="cell">${pub_sub_client}</div>
+                                            </td>
+                                            <td rowspan="1" colspan="1" class="el-table_50_column_224">
+                                                <div class="cell">${allow}</div>
+                                            </td>
+                                            <td rowspan="1" colspan="1" class="el-table_50_column_225">
+                                                <div class="cell">
+                                                    <button type="button"
+                                                        class="el-button delus el-button--danger  el-button--mini is-plain">
+                                                        <span> Delete</span>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>`)
+                        if (element.access==3){
+                            $("table.tab_clientid > tbody").append(`<tr data-id="${element.id}" class="el-table__row">
+                                            <td rowspan="1" colspan="1" class="el-table_50_column_221">
+                                                <div class="cell">${element.clientid}</div>
+                                            </td>
+                                            <td rowspan="1" colspan="1" class="el-table_50_column_222">
+                                                <div class="cell">${element.topic}</div>
+                                            </td>
+                                            <td rowspan="1" colspan="1" class="el-table_50_column_223">
+                                                <div class="cell">Subscribe</div>
+                                            </td>
+                                            <td rowspan="1" colspan="1" class="el-table_50_column_224">
+                                                <div class="cell">${allow}</div>
+                                            </td>
+                                            <td rowspan="1" colspan="1" class="el-table_50_column_225">
+                                                <div class="cell">
+                                                    <button type="button"
+                                                        class="el-button delus el-button--danger  el-button--mini is-plain">
+                                                        <span> Delete</span>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>`)
+                        }
+                    });
+                }
+            });
+            $("#tab-client").click(function(){
+                $("#tab-client").addClass("is-active");
+                $("#tab-username").removeClass("is-active");
+                $("#tab-alluser").removeClass("is-active");
+                $("#pane-client").css("display","block");
+                $("#pane-alluser").css("display","none");
+                $("#pane-username").css("display","none")
+            });
+            function loaddatauser(){
+                $("table.tab_username > tbody").empty()
+                $.ajax({
+                method: "GET",
+                    url: "/acl/username",
+                    headers: header
+                }).done(function( msg ) {
+                    if(msg.list.length > 0){
+                        let pub_sub_client = "";
+                        let allow = "";
+                        msg.list.forEach(element => {
+                            element.allow==1 ? allow = "Allow": allow = "Deny"
+                            element.access==2 ? pub_sub_client = "Subscribe": pub_sub_client = "Publish"
+                            $("table.tab_username > tbody").append(`<tr data-id="${element.id}" class="el-table__row">
+                                                <td rowspan="1" colspan="1" class="el-table_50_column_221">
+                                                    <div class="cell">${element.username}</div>
+                                                </td>
+                                                <td rowspan="1" colspan="1" class="el-table_50_column_222">
+                                                    <div class="cell">${element.topic}</div>
+                                                </td>
+                                                <td rowspan="1" colspan="1" class="el-table_50_column_223">
+                                                    <div class="cell">${pub_sub_client}</div>
+                                                </td>
+                                                <td rowspan="1" colspan="1" class="el-table_50_column_224">
+                                                    <div class="cell">${allow}</div>
+                                                </td>
+                                                <td rowspan="1" colspan="1" class="el-table_50_column_225">
+                                                    <div class="cell">
+                                                        <button type="button"
+                                                            class="el-button delus el-button--danger  el-button--mini is-plain">
+                                                            <span> Delete</span>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>`)
+                            if (element.access==3){
+                                $("table.tab_username > tbody").append(`<tr data-id="${element.id}" class="el-table__row">
+                                                <td rowspan="1" colspan="1" class="el-table_50_column_221">
+                                                    <div class="cell">${element.username}</div>
+                                                </td>
+                                                <td rowspan="1" colspan="1" class="el-table_50_column_222">
+                                                    <div class="cell">${element.topic}</div>
+                                                </td>
+                                                <td rowspan="1" colspan="1" class="el-table_50_column_223">
+                                                    <div class="cell">Subscribe</div>
+                                                </td>
+                                                <td rowspan="1" colspan="1" class="el-table_50_column_224">
+                                                    <div class="cell">${allow}</div>
+                                                </td>
+                                                <td rowspan="1" colspan="1" class="el-table_50_column_225">
+                                                    <div class="cell">
+                                                        <button type="button"
+                                                            class="el-button delus el-button--danger  el-button--mini is-plain">
+                                                            <span> Delete</span>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>`)
+                            }
+                        });
+                    }
+                });
+            }
+            $("#tab-username").click(function(){
+                $("#tab-username").addClass("is-active");
+                $("#tab-client").removeClass("is-active");
+                $("#tab-alluser").removeClass("is-active");
+                $("#pane-client").css("display","none");
+                $("#pane-alluser").css("display","none");
+                $("#pane-username").css("display","block");
+                loaddatauser()
+            });
+            function loaddataalluser(){
+                $("table.tab_alluser > tbody").empty()
+                $.ajax({
+                method: "GET",
+                    url: "/acl/alluser",
+                    headers: header
+                }).done(function( msg ) {
+                    if(msg.list.length > 0){
+                        let pub_sub_client = "";
+                        let allow = "";
+                        msg.list.forEach(element => {
+                            element.allow==1 ? allow = "Allow": allow = "Deny"
+                            element.access==2 ? pub_sub_client = "Subscribe": pub_sub_client = "Publish"
+                            $("table.tab_alluser> tbody").append(`<tr data-id="${element.id}" class="el-table__row">
+                                                <td rowspan="1" colspan="1" class="el-table_50_column_222">
+                                                    <div class="cell">${element.topic}</div>
+                                                </td>
+                                                <td rowspan="1" colspan="1" class="el-table_50_column_223">
+                                                    <div class="cell">${pub_sub_client}</div>
+                                                </td>
+                                                <td rowspan="1" colspan="1" class="el-table_50_column_224">
+                                                    <div class="cell">${allow}</div>
+                                                </td>
+                                                <td rowspan="1" colspan="1" class="el-table_50_column_225">
+                                                    <div class="cell">
+                                                        <button type="button"
+                                                            class="el-button delus el-button--danger  el-button--mini is-plain">
+                                                            <span> Delete</span>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>`)
+                            if (element.access==3){
+                                $("table.tab_alluser> tbody").append(`<tr data-id="${element.id}" class="el-table__row">
+                                                <td rowspan="1" colspan="1" class="el-table_50_column_222">
+                                                    <div class="cell">${element.topic}</div>
+                                                </td>
+                                                <td rowspan="1" colspan="1" class="el-table_50_column_223">
+                                                    <div class="cell">Subscribe</div>
+                                                </td>
+                                                <td rowspan="1" colspan="1" class="el-table_50_column_224">
+                                                    <div class="cell">${allow}</div>
+                                                </td>
+                                                <td rowspan="1" colspan="1" class="el-table_50_column_225">
+                                                    <div class="cell">
+                                                        <button type="button"
+                                                            class="el-button delus el-button--danger  el-button--mini is-plain">
+                                                            <span> Delete</span>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>`)
+                            }
+                        });
+                    }
+                });
+            }
+            $("#tab-alluser").click(function(){
+                $("#tab-username").removeClass("is-active");
+                $("#tab-client").removeClass("is-active");
+                $("#tab-alluser").addClass("is-active");
+                $("#pane-client").css("display","none")
+                $("#pane-username").css("display","none")
+                $("#pane-alluser").css("display","block")
+                loaddataalluser();
+            });
+            $("#cancelus, .closedit").click(function () {
+                $('.el-dialog__wrapper').css("display", "none")
+            });
+            $(".editus").click(function () {
+                $('.el-dialog__wrapper').css("display", "block")
+                $('#usedit').val($(this).closest('.el-table__row').find('.cell').html())
+            });
+            $(document).on('click', '.delus', function(){
+                $('.el-message-box__wrapper').css("display", "block");
+                let id = $(this).closest('.el-table__row').attr("data-id")
+                $(".idhide").val(id)
+            });
+            $(".canceldel, .closedel").click(function () {
+                $('.el-message-box__wrapper').css("display", "none")
+            });
+            $(".cfremove").click(function(){
+                let id = $(".idhide").val();
+                $.ajax({
+                    method: "DELETE",
+                    url: "/acl/"+id,
+                    headers: header
+                }).done(function( msg ) {
+                    if(msg.status=="success"){
+                        alert("Delete success !");
+                        $('[data-id="'+id+'"]').remove()
+                        $('.el-message-box__wrapper').css("display", "none")
+                    }else{
+                        alert("Delete error !")
+                    }
+                });
+            });
+            $(".add_us").click(function(){
+                let username = $(".username").val().trim();
+                let topic_us = $(".topic_us").val().trim();
+                if(username.length==0){
+                    alert("Please input value Username !");
+                    return;
+                }
+                if(topic_us.length==0){
+                    alert("Please input value Topic !");
+                    return;
+                }
+                let pub_sub_us = $("#pub_sub_us option:selected").val();
+                let ad_us = $("#ad_us option:selected").val();
+                let pub_sub_us_a = parseInt(pub_sub_us) == 1 || parseInt(pub_sub_us) == 3 ? "Publish":"Subscribe"
+                let ad_us_a = parseInt(ad_us) == 1 ? "Allow":"Deny"
+                $.ajax({
+                    method: "POST",
+                    url: "/acl",
+                    headers: header,
+                    data:{"username":username,"topic":topic_us,"access":pub_sub_us,"allow":ad_us}
+                }).done(function( msg ) {
+                    if(msg.status=="success"){
+                        $(".username").val("");
+                        $(".topic_us").val("");
+                        alert("Create Username success !")
+                        loaddatauser()
+                        // $("table.tab_username > tbody").append(`<tr data-id="${msg.id}" class="el-table__row">
+                        //                             <td rowspan="1" colspan="1" class="el-table_50_column_221">
+                        //                                 <div class="cell">${username}</div>
+                        //                             </td>
+                        //                             <td rowspan="1" colspan="1" class="el-table_50_column_222">
+                        //                                 <div class="cell">${topic_us}</div>
+                        //                             </td>
+                        //                             <td rowspan="1" colspan="1" class="el-table_50_column_223">
+                        //                                 <div class="cell">${pub_sub_us_a}</div>
+                        //                             </td>
+                        //                             <td rowspan="1" colspan="1" class="el-table_50_column_224">
+                        //                                 <div class="cell">${ad_us_a}</div>
+                        //                             </td>
+                        //                             <td rowspan="1" colspan="1" class="el-table_50_column_225">
+                        //                                 <div class="cell">
+                        //                                     <button type="button"
+                        //                                         class="el-button delus el-button--danger  el-button--mini is-plain">
+                        //                                         <span> Delete</span>
+                        //                                     </button>
+                        //                                 </div>
+                        //                             </td>
+                        //                         </tr>`)
+                        // if(parseInt(pub_sub_us)==3){
+                        //     $("table.tab_username > tbody").append(`<tr data-id="${msg.id}" class="el-table__row">
+                        //                             <td rowspan="1" colspan="1" class="el-table_50_column_221">
+                        //                                 <div class="cell">${username}</div>
+                        //                             </td>
+                        //                             <td rowspan="1" colspan="1" class="el-table_50_column_222">
+                        //                                 <div class="cell">${topic_us}</div>
+                        //                             </td>
+                        //                             <td rowspan="1" colspan="1" class="el-table_50_column_223">
+                        //                                 <div class="cell">Subscribe</div>
+                        //                             </td>
+                        //                             <td rowspan="1" colspan="1" class="el-table_50_column_224">
+                        //                                 <div class="cell">${ad_us_a}</div>
+                        //                             </td>
+                        //                             <td rowspan="1" colspan="1" class="el-table_50_column_225">
+                        //                                 <div class="cell">
+                        //                                     <button type="button"
+                        //                                         class="el-button delus el-button--danger  el-button--mini is-plain">
+                        //                                         <span> Delete</span>
+                        //                                     </button>
+                        //                                 </div>
+                        //                             </td>
+                        //                         </tr>`)
+                        // }       
+                    }else{
+                        if(msg.status=="exist"){
+                            alert("Field  Exist !");
+                        }else{
+                            alert("Update error !");
+                        };
+                    }
+                });
+            });
+            $(".add_client").click(function(){
+                let clientid = $(".clientid").val().trim();
+                let topic_client = $(".topic_client").val().trim();
+                if(clientid.length==0){
+                    alert("Please input value Clientid !");
+                    return;
+                }
+                if(topic_client.length==0){
+                    alert("Please input value Topic !");
+                    return;
+                }
+                let pub_sub_client = $("#pub_sub_client option:selected").val();
+                let ad_client = $("#ad_client option:selected").val();
+                let pub_sub_client_a = parseInt(pub_sub_client) == 1 || parseInt(pub_sub_client) == 3 ? "Publish":"Subscribe"
+                let ad_client_a = parseInt(ad_client) == 1 ? "Allow":"Deny"
+                $.ajax({
+                    method: "POST",
+                    url: "/acl",
+                    headers: header,
+                    data:{"clientid":clientid,"topic":topic_client,"access":pub_sub_client,"allow":ad_client}
+                }).done(function( msg ) {
+                    if(msg.status=="success"){                                                                                          
+                        $(".clientid").val("");
+                        $(".topic_client").val("");
+                        alert("Create Client ID success !")
+                        $("table.tab_clientid > tbody").empty()
+                        $.ajax({
+                            method: "GET",
+                            url: "/acl/client"
+                        }).done(function( msg ) {
+                            if(msg.list.length > 0){
+                                let pub_sub_client = "";
+                                let allow = "";
+                                msg.list.forEach(element => {
+                                    element.allow==1 ? allow = "Allow": allow = "Deny"
+                                    element.access==2 ? pub_sub_client = "Subscribe": pub_sub_client = "Publish"
+                                    $("table.tab_clientid > tbody").append(`<tr data-id="${element.id}" class="el-table__row">
+                                                        <td rowspan="1" colspan="1" class="el-table_50_column_221">
+                                                            <div class="cell">${element.clientid}</div>
+                                                        </td>
+                                                        <td rowspan="1" colspan="1" class="el-table_50_column_222">
+                                                            <div class="cell">${element.topic}</div>
+                                                        </td>
+                                                        <td rowspan="1" colspan="1" class="el-table_50_column_223">
+                                                            <div class="cell">${pub_sub_client}</div>
+                                                        </td>
+                                                        <td rowspan="1" colspan="1" class="el-table_50_column_224">
+                                                            <div class="cell">${allow}</div>
+                                                        </td>
+                                                        <td rowspan="1" colspan="1" class="el-table_50_column_225">
+                                                            <div class="cell">
+                                                                <button type="button"
+                                                                    class="el-button delus el-button--danger  el-button--mini is-plain">
+                                                                    <span> Delete</span>
+                                                                </button>
+                                                            </div>
+                                                        </td>
+                                                    </tr>`)
+                                    if (element.access==3){
+                                        $("table.tab_clientid > tbody").append(`<tr data-id="${element.id}" class="el-table__row">
+                                                        <td rowspan="1" colspan="1" class="el-table_50_column_221">
+                                                            <div class="cell">${element.clientid}</div>
+                                                        </td>
+                                                        <td rowspan="1" colspan="1" class="el-table_50_column_222">
+                                                            <div class="cell">${element.topic}</div>
+                                                        </td>
+                                                        <td rowspan="1" colspan="1" class="el-table_50_column_223">
+                                                            <div class="cell">Subscribe</div>
+                                                        </td>
+                                                        <td rowspan="1" colspan="1" class="el-table_50_column_224">
+                                                            <div class="cell">${allow}</div>
+                                                        </td>
+                                                        <td rowspan="1" colspan="1" class="el-table_50_column_225">
+                                                            <div class="cell">
+                                                                <button type="button"
+                                                                    class="el-button delus el-button--danger  el-button--mini is-plain">
+                                                                    <span> Delete</span>
+                                                                </button>
+                                                            </div>
+                                                        </td>
+                                                    </tr>`)
+                                    }
+                                });
+                            }
+                        });
+                        // $("table.tab_clientid > tbody").append(`<tr data-id="${msg.id}" class="el-table__row">
+                        //                             <td rowspan="1" colspan="1" class="el-table_50_column_221">
+                        //                                 <div class="cell">${clientid}</div>
+                        //                             </td>
+                        //                             <td rowspan="1" colspan="1" class="el-table_50_column_222">
+                        //                                 <div class="cell">${topic_client}</div>
+                        //                             </td>
+                        //                             <td rowspan="1" colspan="1" class="el-table_50_column_223">
+                        //                                 <div class="cell">${pub_sub_client_a}</div>
+                        //                             </td>
+                        //                             <td rowspan="1" colspan="1" class="el-table_50_column_224">
+                        //                                 <div class="cell">${ad_client_a}</div>
+                        //                             </td>
+                        //                             <td rowspan="1" colspan="1" class="el-table_50_column_225">
+                        //                                 <div class="cell">
+                        //                                     <button type="button"
+                        //                                         class="el-button delus el-button--danger  el-button--mini is-plain">
+                        //                                         <span> Delete</span>
+                        //                                     </button>
+                        //                                 </div>
+                        //                             </td>
+                        //                         </tr>`)
+                        // if(parseInt(pub_sub_client)==3){
+                        //     $("table.tab_clientid > tbody").append(`<tr data-id="${msg.id}" class="el-table__row">
+                        //                             <td rowspan="1" colspan="1" class="el-table_50_column_221">
+                        //                                 <div class="cell">${clientid}</div>
+                        //                             </td>
+                        //                             <td rowspan="1" colspan="1" class="el-table_50_column_222">
+                        //                                 <div class="cell">${topic_client}</div>
+                        //                             </td>
+                        //                             <td rowspan="1" colspan="1" class="el-table_50_column_223">
+                        //                                 <div class="cell">Subscribe</div>
+                        //                             </td>
+                        //                             <td rowspan="1" colspan="1" class="el-table_50_column_224">
+                        //                                 <div class="cell">${ad_client_a}</div>
+                        //                             </td>
+                        //                             <td rowspan="1" colspan="1" class="el-table_50_column_225">
+                        //                                 <div class="cell">
+                        //                                     <button type="button"
+                        //                                         class="el-button delus el-button--danger  el-button--mini is-plain">
+                        //                                         <span> Delete</span>
+                        //                                     </button>
+                        //                                 </div>
+                        //                             </td>
+                        //                         </tr>`)
+                        // }       
+                    }else{
+                        if(msg.status=="exist"){
+                            alert("Field  Exist !");
+                        }else{
+                            alert("Update error !");
+                        }
+                    }
+                });
+            });
+            $(".add_all").click(function(){
+                let topic_all = $(".topic_all").val().trim();
+                if(topic_all.length==0){
+                    alert("Please input value Topic !");
+                    return;
+                }
+                let pub_sub_all = $("#pub_sub_all option:selected").val();
+                let ad_all = $("#ad_all option:selected").val();
+                let pub_sub_all_a = parseInt(pub_sub_all) == 1 || parseInt(pub_sub_all) == 3 ? "Publish":"Subscribe"
+                let ad_all_a = parseInt(ad_all) == 1 ? "Allow":"Deny"
+                $.ajax({
+                    method: "POST",
+                    url: "/acl",
+                    headers: header,
+                    data:{"username":"$all","topic":topic_all,"access":pub_sub_all,"allow":ad_all}
+                }).done(function( msg ) {
+                    if(msg.status=="success"){
+                        $(".topic_all").val("");
+                        alert("Create All User success !")
+                        loaddataalluser();
+                        // $("table.tab_alluser > tbody").append(`<tr data-id="${msg.id}" class="el-table__row">
+                        //                             <td rowspan="1" colspan="1" class="el-table_50_column_222">
+                        //                                 <div class="cell">${topic_all}</div>
+                        //                             </td>
+                        //                             <td rowspan="1" colspan="1" class="el-table_50_column_223">
+                        //                                 <div class="cell">${pub_sub_all_a}</div>
+                        //                             </td>
+                        //                             <td rowspan="1" colspan="1" class="el-table_50_column_224">
+                        //                                 <div class="cell">${ad_all_a}</div>
+                        //                             </td>
+                        //                             <td rowspan="1" colspan="1" class="el-table_50_column_225">
+                        //                                 <div class="cell">
+                        //                                     <button type="button"
+                        //                                         class="el-button delus el-button--danger  el-button--mini is-plain">
+                        //                                         <span> Delete</span>
+                        //                                     </button>
+                        //                                 </div>
+                        //                             </td>
+                        //                         </tr>`)
+                        // if(parseInt(pub_sub_all)==3){
+                        //     $("table.tab_alluser > tbody").append(`<tr data-id="${msg.id}" class="el-table__row">
+                        //                             <td rowspan="1" colspan="1" class="el-table_50_column_222">
+                        //                                 <div class="cell">${topic_all}</div>
+                        //                             </td>
+                        //                             <td rowspan="1" colspan="1" class="el-table_50_column_223">
+                        //                                 <div class="cell">Subscribe</div>
+                        //                             </td>
+                        //                             <td rowspan="1" colspan="1" class="el-table_50_column_224">
+                        //                                 <div class="cell">${ad_all_a}</div>
+                        //                             </td>
+                        //                             <td rowspan="1" colspan="1" class="el-table_50_column_225">
+                        //                                 <div class="cell">
+                        //                                     <button type="button"
+                        //                                         class="el-button delus el-button--danger  el-button--mini is-plain">
+                        //                                         <span> Delete</span>
+                        //                                     </button>
+                        //                                 </div>
+                        //                             </td>
+                        //                         </tr>`)
+                        // }       
+                    }else{
+                        if(msg.status=="exist"){
+                            alert("Field  Exist !");
+                        }else{
+                            alert("Update error !");
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

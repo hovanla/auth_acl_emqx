@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html class="dark-themes" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/iconfont.css">
+    <script src="js/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+</head>
+
+<body style="background-color: #161616;">
+    <div id="app">
+        <div class="login-view">
+            <div class="el-card is-always-shadow">
+                <div class="el-card__header">
+                    <div> LOG IN</div>
+                </div>
+                <div class="el-card__body">
+                    <form class="el-form el-form--public el-form--label-top">
+                        <div class="el-form-item el-form-item--medium"><label
+                                class="el-form-item__label">Username</label>
+                            <div class="el-form-item__content">
+                                <div class="el-input el-input--medium">
+                                    <input type="text" id="username" autocomplete="off" placeholder="" class="el-input__inner">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="el-form-item el-form-item--medium"><label
+                                class="el-form-item__label">Password</label>
+                            <div class="el-form-item__content">
+                                <div class="el-input el-input--medium">
+                                    <input type="password" id="password" autocomplete="off" placeholder="" class="el-input__inner">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="login-footer"><label class="el-checkbox"><span class="el-checkbox__input"><span
+                                    class="el-checkbox__inner"></span><input id="remember" type="checkbox" aria-hidden="false"
+                                    class="el-checkbox__original" value=""></span><span class="el-checkbox__label">
+                                Remember
+                            </span></label>
+                             <button type="button"
+                            class="el-button confirm-btn el-button--success el-button--medium" id="login">
+                            <span>Log In
+                            </span>
+                        </button></div>
+                    <div class="clear-fix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let user = sessionStorage.getItem("user")?sessionStorage.getItem("user"):localStorage.getItem("user");
+        if(user){
+            window.location.href = "http://localhost:3000/auth";
+        }
+        $(document).ready(function () {
+            
+            $("#login").click(function(){
+                let username = $("#username").val().trim();
+                let password = $("#password").val().trim();
+                let remember = $("#remember").is(":checked");
+                if(username.length==0){
+                    alert("Please input Username !");
+                    return;
+                }
+                if(password.length==0){
+                    alert("Please input Password !");
+                    return;
+                }
+                $.ajax({
+                    method: "POST",
+                    url: "/login",
+                    data:{"username":username,"password":password,"remember":remember}
+                }).done(function( msg ) {
+                    if(msg.status=="ok"){
+                       if(!remember){
+                            sessionStorage.setItem("user",JSON.stringify({"username":username,"password":password}))
+                       }else{
+                            localStorage.setItem("user",JSON.stringify({"username":username,"password":password}))
+                       }
+                       window.location.href = "http://localhost:3000/auth";
+
+                    }else{
+                        alert(msg.status)
+                    }
+                });
+            })
+        });
+    </script>
+</body>
+
+</html>

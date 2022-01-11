@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html class="dark-themes" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/iconfont.css">
+    <script src="js/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="public/css/test.css"> -->
+</head>
+
+<body style="background-color: #161616;">
+    <div id="app">
+        <div class="home-view">
+            <div class="left-bar">
+                <div class="logo-box"><img src="img/emq_logo.b68cfef.png" class="logo"></div>
+                <ul role="menubar" class="menu-wrapper el-menu" style="background-color: #242327;">
+                     <a href="/auth"><li role="menuitem" tabindex="-1" class="el-menu-item is-active"
+                        style="padding-left: 20px; color: rgb(166, 166, 168); background-color: rgb(36, 35, 39);"><i
+                            class="iconfont icon-tianshenpi"></i>
+                        <div class="el-badge menu-dot">Authentication</div>
+                    </li></a> 
+                    <a href="/acl">
+                        <li role="menuitem" tabindex="-1" class="el-menu-item "
+                        style="padding-left: 20px; color: rgb(166, 166, 168); background-color: rgb(36, 35, 39);"><i
+                            class="iconfont icon-xitong"></i>
+                        <div class="el-badge menu-dot">
+                              ACL
+                        </div>
+                    </li></a> 
+                    <div class="bar-footer">
+                        <span></span>
+                        <a  onclick="logout()" javascript:void(0);"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAABsklEQVRoQ+2ZwVHDMBBF/6oB6IBwCRxNJeCkAdGBXQl0gCggASrB3DC5OBVgrjlkGTOByciJbEcyyIxytbTat/9LlrOEgf9o4PkjAPy1gjsVOH+Qo/UaN0SIAIwcJ1kwIxMC6WusCtvYNYCv5BnPBBzbBjfNZ6AUhAtbiBrAeC4fCbjsM/nv2Aw8vU3Ulc1auwDe+67+VsJFPlGnTgHO5pK3A+YT5fSkch2/lpzrBfTquo4fALr6NyigVSxYKFjI8pj+dQt1VaxpfABoqlDX5+OZvFsJpEWsyjZzvVOgek8wkDHhehGrrAnCS4Aq6eq6zYx0MVXKBOEtwM+Vm6FMlrIG0K8GTZIf8txkqUEAmCw1HADGBwOJvicGAcDACxPkrlPJGuAQT5vm6HuKgfsVIdn3XvAWgPdYRof3EsBkGe8BxnOpTJbxHqDrnvLOQt4DhI/68FHf1aTa+GChYKFgIbd/39cbHDNZEuHIstDtpjOW+VRZ9eD+X4tp06HM+lahui4Lgch5k6/SftOpvCVGBMJJOz+0HMVYMiEThMQ2+WpFp/2vlghOhwUAp+U8INjgFfgEg1piQESWU5UAAAAASUVORK5CYII="></a>
+                    </div>
+                </ul>
+            </div>
+            <div class="home-content">
+                <div class="data-view">
+                    <div class="page-title">
+                        Authentication
+                    </div>
+                    <div class="el-card el-card--self search-card is-always-shadow">
+                        <div class="el-card__body">
+                            <form class="el-form el-form--label-left">
+                                <div class="el-row" style="margin-left: -10px; margin-right: -10px;">
+                                    <div class="el-col el-col-8" style="padding-left: 10px; padding-right: 10px;">
+                                        <div class="el-form-item el-form-item--medium"><label
+                                                class="el-form-item__label" style="width: 110px;">Username</label>
+                                            <div class="el-form-item__content" style="margin-left: 110px;">
+                                                <div class="el-input el-input--small">
+                                                    <input type="text" autocomplete="off" class="el-input__inner username_auth">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="el-col el-col-8" style="padding-left: 10px; padding-right: 10px;">
+                                        <div class="el-form-item el-form-item--medium"><label
+                                                class="el-form-item__label" style="width: 110px;">Password</label>
+                                            <div class="el-form-item__content" style="margin-left: 110px;">
+                                                <div class="el-input el-input--small">
+                                                    <input type="text" autocomplete="off" class="el-input__inner password_auth">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span class="col-oper" style="float: left;"><button type="button"
+                                            class="el-button el-button--primary add_auth el-button--small is-plain el-button--success is-plain">
+                                            <span>
+                                                Add
+                                            </span>
+                                            <!-- </button> <button type="button"
+                                            class="el-button el-button--default el-button--small is-plain">
+                                            <span>
+                                                Reset
+                                            </span>
+                                        </button>  -->
+                                            <!-- <a href="javascript:;" class="show-more">
+                                            Expand
+                                            <i class="el-icon-arrow-down"></i></a> -->
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div
+                        class="el-table el-table--fit el-table--border el-table--enable-row-hover el-table--enable-row-transition el-table--medium">
+                        <div class="hidden-columns">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                        <div class="el-table__header-wrapper">
+                            <table class="el-table__header" style="width: 1100px;" cellspacing="0" cellpadding="0"
+                                border="0">
+                                <colgroup>
+                                    <col name="el-table_50_column_221" width="960">
+                                    <col name="el-table_50_column_223" width="140">
+                                    <col name="gutter" width="0">
+                                </colgroup>
+                                <thead class="has-gutter">
+                                    <tr class="">
+                                        <th colspan="1" rowspan="1" class="el-table_50_column_221     is-leaf">
+                                            <div class="cell">Username</div>
+                                        </th>
+                                        <th colspan="1" rowspan="1" class="el-table_50_column_223     is-leaf">
+                                            <div class="cell">Actions</div>
+                                        </th>
+                                        <th class="gutter" style="width: 0px; display: none;"></th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div class="el-table__body-wrapper is-scrolling-none">
+                            <table class="el-table__body" style="width: 1100px;" cellspacing="0" cellpadding="0"
+                                border="0">
+                                <colgroup>
+                                    <col name="el-table_50_column_221" width="960">
+                                    <col name="el-table_50_column_223" width="140">
+                                </colgroup>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="el-dialog__wrapper" style="z-index: 2001;display: none;">
+                            <div role="dialog" aria-modal="true" aria-label="Edit User" class="el-dialog"
+                                style="margin-top: 15vh; width: 500px;">
+                                <div class="el-dialog__header"><span class="el-dialog__title">Edit User</span>
+                                    <button
+                                        type="button" aria-label="Close" class="el-dialog__headerbtn closedit"><i class="fa fa-times" aria-hidden="true"></i></i></button>
+                                        </div>
+                                <div class="el-dialog__body">
+                                    <form class="el-form el-form--public el-form--label-top">
+                                        <div class="el-row" style="margin-left: -10px; margin-right: -10px;">
+                                            <div class="el-col el-col-24"
+                                                style="padding-left: 10px; padding-right: 10px;">
+                                                <div class="el-form-item is-required el-form-item--medium"><label
+                                                        for="username" class="el-form-item__label">Username</label>
+                                                    <div class="el-form-item__content">
+                                                        <div class="el-input el-input--medium is-disabled">
+                                                            <input type="text" id="usedit" autocomplete="off"
+                                                                class="el-input__inner">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="el-col el-col-24"
+                                                style="padding-left: 10px; padding-right: 10px;">
+                                                <div class="el-form-item is-required el-form-item--medium"><label
+                                                        for="tags" class="el-form-item__label">Password</label>
+                                                    <div class="el-form-item__content">
+                                                        <div class="el-input el-input--medium">
+                                                            <input type="password" style="display: none;" class="pwhide" value="">
+                                                            <input type="password" autocomplete="off"
+                                                                class="el-input__inner password">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="el-dialog__footer">
+                                    <div><button type="button" id="cancelus"
+                                            class="el-button cache-btn el-button--text el-button--medium">
+                                            <span>
+                                                Cancel
+                                            </span>
+                                        </button> <button type="button"
+                                            class="el-button confirm-btn saveauth el-button--success el-button--medium">
+                                            <span>
+                                                Save
+                                            </span>
+                                        </button></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div syle tabindex="-1" role="dialog" aria-modal="true" aria-label="Notice" class="el-message-box__wrapper"
+            style="z-index: 2003; display: none;">
+            <div class="el-message-box">
+                <div class="el-message-box__header">
+                    <div class="el-message-box__title">
+                       <span>Notice</span>
+                    </div><button type="button" aria-label="Close" class="el-message-box__headerbtn closedel">
+                         <i class="fa fa-times" aria-hidden="true"></i></button>
+                </div>
+                <div class="el-message-box__content">
+                    <div class="el-message-box__container">
+                        <div class="el-message-box__status el-icon-warning"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></div>
+                        <div class="el-message-box__message">
+                            <p>Want to delete ？</p>
+                        </div>
+                    </div>
+                    <div class="el-message-box__input" style="display: none;">
+                        <div class="el-input el-input--medium">
+                            <input type="text" autocomplete="off" placeholder="" class="el-input__inner">
+                        </div>
+                        <div class="el-message-box__errormsg" style="visibility: hidden;"></div>
+                    </div>
+                </div>
+                <div class="el-message-box__btns"><button type="button"
+                        class="el-button canceldel el-button--default el-button--small cache-btn el-button--text">
+                        <span>
+                            Cancel
+                        </span>
+                    </button><button type="button"
+                        class="el-button cfdel el-button--default el-button--small el-button--primary confirm-btn">
+                        <span>
+                            Confirm
+                        </span>
+                    </button></div>
+            </div>
+        </div>
+        <div class="v-modal" style="z-index: 2045;" tabindex="0"></div>
+    </div>
+    <script>
+        function logout(){
+            sessionStorage.removeItem("user")
+            localStorage.removeItem("user");
+            window.location.href = "http://localhost:3000/login";
+        }
+        $(document).ready(function () {
+            let header = {};
+            let user = sessionStorage.getItem("user")?sessionStorage.getItem("user"):localStorage.getItem("user");
+            if(user){
+                user = JSON.parse(user)
+                $(".bar-footer span").html(user.username)
+                header = {"Authorization": "Basic " + btoa(user.username + ":" + user.password)}
+            }else{
+                window.location.href = "http://localhost:3000/login";
+            }
+            $.ajax({
+                method: "GET",
+                headers: header,
+                url: "/auth/list"
+            }).done(function( msg ) {
+                if(msg.list.length > 0){
+                    msg.list.forEach(element => {
+                        $("table.el-table__body > tbody").append(`
+                                        <tr data-id="${element.id}" class="el-table__row">
+                                        <td rowspan="1" colspan="1" class="el-table_50_column_221  ">
+                                            <div class="cell"> ${element.username}</div>
+                                        </td>
+                                        <td rowspan="1" colspan="1" class="el-table_50_column_223  ">
+                                            <div class="cell">
+                                                <button type="button"
+                                                    class="el-button editus el-button--warning el-button--mini is-plain">
+                                                    <span> Edit</span>
+                                                </button>
+                                                <button type="button"
+                                                    class="el-button delus el-button--danger  el-button--mini is-plain">
+                                                    <span> Delete</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                        `)
+                    });
+                }else{
+                    // alert("LHLHFLDh")
+                }
+            });
+           
+            $(".add_auth").click(function(){
+                let username = $(".username_auth").val().trim();
+                if(username.length==0){
+                    alert("Please input value Username !");
+                    return;
+                }
+                let password = $(".password_auth").val().trim();
+                if(password.length==0){
+                    alert("Please input value Password !");
+                    return;
+                }
+                $.ajax({
+                    method: "POST",
+                    url: "/auth",
+                    headers: header,
+                    data:{"username":username,"password":password}
+                }).done(function( msg ) {
+                   if(msg.status=="success"){
+                       alert("Create user success !")
+                       $(".username_auth").val("")
+                       $(".password_auth").val("")
+                       $("table > tbody").append(`  <tr data-id="${msg.id}" class="el-table__row">
+                                        <td rowspan="1" colspan="1" class="el-table_50_column_221  ">
+                                            <div class="cell"> ${username}</div>
+                                        </td>
+                                        <td rowspan="1" colspan="1" class="el-table_50_column_223  ">
+                                            <div class="cell">
+                                                <button type="button"
+                                                    class="el-button editus el-button--warning el-button--mini is-plain">
+                                                    <span> Edit</span>
+                                                </button>
+                                                <button type="button"
+                                                    class="el-button delus el-button--danger  el-button--mini is-plain">
+                                                    <span> Delete</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>`)
+                   }else{
+                       alert("Create user error !")
+                   }
+                });
+            });
+            $("#cancelus, .closedit").click(function () {
+                $('.el-dialog__wrapper').css("display", "none")
+            });
+            $(document).on('click', '.delus', function(){
+                $('.el-message-box__wrapper').css("display", "block")
+                let id = $(this).closest('.el-table__row').attr("data-id")
+                $(".pwhide").val(id)
+            });
+            $(document).on('click', '.editus', function(){
+                $(".password").val("")
+                let id = $(this).closest('.el-table__row').attr("data-id")
+                $(".pwhide").val(id)
+                $('.el-dialog__wrapper').css("display", "block")
+                $('#usedit').val($(this).closest('.el-table__row').find('.cell').html())
+            });
+            $(".canceldel, .closedel").click(function () {
+                $('.el-message-box__wrapper').css("display", "none")
+            });
+            $(".cfdel").click(function(){
+                let id = $(".pwhide").val()
+                $.ajax({
+                    method: "DELETE",
+                    url: "/auth/"+id,
+                     headers: header,
+                }).done(function( msg ) {
+                    if(msg.status=="success"){
+                        alert("Delete success !");
+                        $('[data-id="'+id+'"]').remove()
+                        $('.el-message-box__wrapper').css("display", "none")
+                    }else{
+                        alert("Delete error !")
+                    }
+                });
+            })
+            $(".saveauth").click(function(){
+                let id = $(".pwhide").val()
+                let username =  $("#usedit").val().trim();
+                let password = $(".password").val().trim();
+                if(username.length==0){
+                    alert("Please input value Username !");
+                    return;
+                }
+                if(password.length==0){
+                    alert("Please input value Password !");
+                    return;
+                }
+                $.ajax({
+                    method: "PUT",
+                    url: "/auth/"+id,
+                    headers: header,
+                    data:{"username":username,"password":password}
+                }).done(function( msg ) {
+                    if(msg.status=="success"){
+                        alert("Update success !");
+                        let tt = $('[data-id="'+id+'"]').find('.el-table_50_column_221 .cell').html(username)
+                        $('.el-dialog__wrapper').css("display", "none")
+                    }else{
+                        alert("Update error !")
+                    }
+                });
+            })
+        });
+    </script>
+</body>
+
+</html>
